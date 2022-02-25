@@ -47,6 +47,13 @@ clf = ComplementNB()
 clf.fit(X_train, y_train)
 
 
+
+# Save the vectorizer
+vec_file = 'vectorizer.pickle'
+pickle.dump(vectorizer, open(vec_file, 'wb'))
+
+
+
 y_pred = clf.predict(X_test)
 
 confusion_matrix(y_test, y_pred)
@@ -55,7 +62,7 @@ print("Number of mislabeled points out of a total %d points : %d"
        % (X_test.shape[0], (y_test != y_pred).sum()))
 print('\nAccuracy: {:.2f}\n'.format(accuracy_score(y_test, y_pred)))
 
-
+#saving the model
 pickle_out = open("clf.pkl", "wb") 
 pickle.dump(clf, pickle_out) 
 pickle_out.close()
